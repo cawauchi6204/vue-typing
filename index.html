@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TypingQuest</title>
 </head>
 <body>
+  <header>
+
+  </header>
+  <main>
+    <section>
+      <div id="app">
+        <p>{{ message }}</p>
+        <p>{{ displayWord }}</p>
+        <p>{{ inputWord }}</p>
+        <p>{{ input }}</p>
+      </div>
+      <form action="#">
+        <input type="text" v-model="input">
+      </form>
+    </section>
+  </main>
+  <footer>
+
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="main.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        words:[
+          { displayString: 'お腹がすいた', inputString: 'onakagasuita'},
+          { displayString: 'もう漏れそう', inputString: 'moumoresou'},
+          { displayString: 'お腹が痛くなってきた', inputString: 'onakagaitakunattekita'},
+          { displayString: '何でやねん', inputString: 'nanndeyanen'},
+          { displayString: 'えええ', inputString: 'eee'},
+        ],
+        input:'',
+        location:0,
+        score:0,
+        miss:0,
+        message:'こんにちはvue',
+      },
+      computed:{
+        word() {
+          return this.words[Math.floor(Math.random() * this.words.length)]
+        },
+        displayWord() {
+          return this.word.displayString
+        },
+        inputWord() {
+          return this.word.inputString
+        },
+      }
+    })
+  </script>
 </body>
 </html>
